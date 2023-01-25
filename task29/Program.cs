@@ -2,8 +2,7 @@
 
 // Задача 29: Напишите программу, которая задаёт массив из 8 элементов
 // и выводит их на экран
-// 1, 2, 5, 7, 19  -> [1, 2, 5, 7, 19]
-// 6, 1, 33        -> [6, 1, 33]   
+// 1, 2, 5, 7, 19, 6, 1, 33  ->  [1, 2, 5, 7, 19, 6, 1, 33]   
 
 
 // 1. Функция заполнения массива
@@ -13,13 +12,21 @@
 // 5.  Немного интерфейса))
 
 // 1. Функция заполнения массива
-int[] FillArray(int arraySize)
+int[] ManualFillArray(int arraySize)
 {
     int[] result = new int[arraySize];
-    Random tmp = new Random();
+    int tmp;
     for (int i = 0; i < result.Length; i++)
     {
-        result[i] = tmp.Next(1, 99);
+        System.Console.Write($"Введите {i} элемент массива:  ");
+        while (true) {
+            if (int.TryParse(Console.ReadLine(), out tmp))
+            {
+                result[i] = tmp;
+                break;
+            }
+            else System.Console.WriteLine("Введите число: ");
+        }
     }
     return result;
 }
@@ -44,7 +51,7 @@ while (exit_condition != "n")
     int.TryParse(Console.ReadLine(), out int number);
 
     // 4. Демонстрация работы функций с выводом в консоль
-    int[] result = FillArray(number);
+    int[] result = ManualFillArray(number);
     PrintArray(result);
     System.Console.WriteLine();
     // 5.  Немного интерфейса))
